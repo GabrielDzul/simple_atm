@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :deposits, only: [:create]
 
       # ==================================
-      # withdrawal
+      # Withdrawal
       # - POST      /withdrawals
       # ==================================
       resources :withdrawal, only: [:create]
