@@ -50,3 +50,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dry-validation', '~> 1.6'
 gem 'dry-types', '~> 1.2'
 gem 'dry-struct', '~> 1.0'
+gem 'active_model_serializers', '~> 0.10.10'
