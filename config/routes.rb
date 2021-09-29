@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       # Withdrawal
       # - POST      /withdrawals
       # ==================================
-      resources :withdrawal, only: [:create]
+      resources :withdrawals, only: [:create]
     end
   end
 end
