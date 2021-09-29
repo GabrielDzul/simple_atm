@@ -1,6 +1,7 @@
 module Api
   module V1
     class BaseController < ActionController::API
+      include DefaultHandling
       include SchemaValidable
 
       before_action :underscore_params!

@@ -1,12 +1,11 @@
 module DefaultHandling
   def self.included(cls)
     cls.class_eval do
-      include ErrorNotifier
 
       # must go first in order to preserve last priority
       # https://stackoverflow.com/a/9121054/3287738
-      rescue_from StandardError do |e|
-        report_error(e, notify: true)
+      rescue_from Error::BaseException do |e|
+        respond e
       end
     end
   end
@@ -14,6 +13,7 @@ module DefaultHandling
   def respond(error)
     render json: error,
            status: error.status,
+           serializer: APIErrorSerializer,
            adapter: :json,
            root: 'error'
   end

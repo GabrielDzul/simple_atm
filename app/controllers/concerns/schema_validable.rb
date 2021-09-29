@@ -13,7 +13,7 @@ module SchemaValidable
     validated_params = schema.call(request_data)
 
     if validated_params.failure?
-      raise StandardError
+      raise Error::PreconditionFailed
     end
 
     validated_params.to_h
