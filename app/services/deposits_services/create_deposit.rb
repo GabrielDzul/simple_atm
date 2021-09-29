@@ -6,9 +6,9 @@ module DepositsServices
       @balance_repo = BalanceRepository.instance
     end
 
-    def execute(raw_data)
+    def execute(notes_data)
       notes = @notes_repo.bank_notes
-      data = raw_data[:bank_notes].transform_keys!(&:to_i).transform_values!(&:to_i)
+      data = notes_data
       check_deposit data
 
       notes.merge!(data){ |key, current, deposit| current + deposit }
@@ -22,8 +22,8 @@ module DepositsServices
 
     def check_deposit data
       data.each do |key, value|
-        raise StandardError unless value.to_i.positive?
-        raise StandardError unless BankNotesRepository::ACCEPTED_NOTES.include?(key.to_i)
+        raise Error::PreconditionFailed, 'Cannot deposit negative amounts' unless value.to_i.positive?
+        raise Error::PreconditionFailed, 'Invalid Bank note' unless BankNotesRepository::ACCEPTED_NOTES.include?(key.to_i)
       end
     end
   end

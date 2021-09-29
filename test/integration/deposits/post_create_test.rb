@@ -15,15 +15,21 @@ class PostCreateTest < ActionDispatch::IntegrationTest
   end
 
   test "fails when missing body on request" do
-    # When/Then
-    assert_raises(StandardError) { post api_v1_deposits_path }
+    # When
+    post api_v1_deposits_path
+
+    #Then
+    assert_response :precondition_failed
   end
 
   test "fails with incorrect payload" do
     # Given
     params = { "bankNotes": { "1": 10, "5": 7, "10": -9, "50": 3 } }
 
-    # When/Then
-    assert_raises(StandardError) { post api_v1_deposits_path, params: params }
+    # When
+    post api_v1_deposits_path, params: params
+
+    # Then
+    assert_response :precondition_failed
   end
 end
