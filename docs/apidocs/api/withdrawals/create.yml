@@ -1,0 +1,46 @@
+post:
+  summary: Create a new withdrawal
+  tags:
+    - withdrawals
+  description: |
+    Create a new withdrawal
+  operationId: addWithdrawal
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          "title": "Withdrawal Post Request Body"
+          "type": "object"
+          description: Bank notes denominations to deposit
+          properties:
+            amount:
+              enum: [ 95 ]
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            "type": "object"
+            dditionalProperties: true
+            example:
+              1: 10
+              5: 7
+              10: 9
+              50: 3
+    412:
+      description: Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  status:
+                    enum: [412]
+                  message:
+                    type: string
+                    description: A message explaining the error reason
+

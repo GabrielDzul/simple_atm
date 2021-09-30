@@ -14,4 +14,10 @@ Rails.application.routes.draw do
       resources :withdrawals, only: [:create]
     end
   end
+
+  # ==================================
+  # API Docs
+  #   - GET     /docs
+  # ==================================
+  resources :docs, only: [:index]
 end

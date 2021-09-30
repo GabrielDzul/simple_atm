@@ -1,0 +1,55 @@
+post:
+  summary: Create a new deposit
+  tags:
+    - deposits
+  description: |
+    Create a new deposit
+  operationId: addDeposit
+  requestBody:
+    content:
+      'application/json':
+        schema:
+          "title": "Deposit Post Request Body"
+          "description": ""
+          "type": "object"
+          "properties":
+            "banknotes":
+              description: Bank notes denominations to deposit
+              "type": "object"
+              additionalProperties: true
+              example:
+                1: 10
+                5: 7
+                10: 9
+                50: 3
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            "type": "object"
+            dditionalProperties: true
+            example:
+              1: 10,
+              2: 0,
+              5: 7,
+              10: 9,
+              25: 0,
+              50: 3
+    412:
+      description: Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  status:
+                    enum: [412]
+                  message:
+                    type: string
+                    description: A message explaining the error reason
+
