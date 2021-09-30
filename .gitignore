@@ -23,5 +23,14 @@
 
 .byebug_history
 
+# WebStorm
+.idea/
+
+# General
+log/
+*.log
+
+node_modules
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
